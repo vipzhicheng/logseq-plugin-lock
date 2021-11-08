@@ -41,6 +41,9 @@ module.exports = {
           {
             loader: 'sass-loader',
           },
+          {
+            loader: 'postcss-loader',
+          },
         ],
         include: [
           path.join(__dirname, './src/styles'),

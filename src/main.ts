@@ -20,13 +20,12 @@ async function main() {
       //   top: top + rect.top + 'px',
       //   left: left + rect.left + 'px',
       // });
-      // logseq.showMainUI();
-      const { content } = await logseq.Editor.getBlock(uuid);
-      console.log('content', content);
-      const stegcloak = new StegCloak(true, false);
-      const lockedSecret = stegcloak.hide(content, 'password', 'locked secret');
+      logseq.showMainUI();
+      // const { content } = await logseq.Editor.getBlock(uuid);
+      // const stegcloak = new StegCloak(true, false);
+      // const lockedSecret = stegcloak.hide(content, 'password', 'locked secret');
 
-      logseq.Editor.updateBlock(uuid, `<a class="locked-secret" href="javascript:logseq.api.show_msg('Input /lock to get your secret.');" data-secret="${lockedSecret}">*</a>`);
+      // logseq.Editor.updateBlock(uuid, `<a class="locked-secret" href="javascript:logseq.api.show_msg('Input /lock to get your secret.');" data-secret="${lockedSecret}">*</a>`);
     },
   );
 }

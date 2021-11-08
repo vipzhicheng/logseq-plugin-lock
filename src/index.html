@@ -6,10 +6,24 @@
   <link rel="shortcut icon" href="favicon.png" type="image/png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Logseq lock</title>
+  <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
 </head>
 <body>
   <div id="app">
-    <input type="password" name="password" id="password" />
+    <div class="w-screen h-screen flex justify-center items-center relative">
+
+
+      <div class="w-96 h-24 bg-[#4A525A] rounded-xl  shadow-2xl flex items-center justify-center">
+        <div class="">
+          <input type="password" id="password" class="p-2 h-10 rounded-lg">
+          <button class="bg-[#0a3870ee] text-gray-50 w-24 h-10 ml-6 text-xl rounded-lg font-bold">Lock</button>
+        </div>
+      </div>
+
+      <div class="mx-auto w-2/3 absolute bottom-10 text-gray-500">CAUTION: Once locked, your data cannot be restored, it can only be unlocked with your password and placed into the system clipboard. Please make sure that your clipboard is safe. If you forget your password, you will lose your info forever!!!</div>
+
+    </div>
+
   </div>
 </body>
 </html>
