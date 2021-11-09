@@ -4,6 +4,11 @@ import StegCloak from 'stegcloak';
 import clipboardy from 'clipboardy';
 
 async function main() {
+  logseq.setMainUIInlineStyle({
+    zIndex: 13,
+    position: 'absolute',
+  });
+
   const hotkeys = (window as any)?.hotkeys;
   const bindKeys = async function() {
     if (hotkeys) {
@@ -44,39 +49,43 @@ async function main() {
   closeButtonEl.addEventListener('click', closeButtonHandler);
 
   // password
-  const stegcloak = new StegCloak(true, false);
+  const stegcloak = new StegCloak(true, true);
 
   const processInfo = async password => {
     const uuid = passwordEl.getAttribute('data-uuid');
-    const { content } = await logseq.Editor.getBlock(uuid);
+    const block = await logseq.Editor.getBlock(uuid);
 
-    if (content.indexOf('<a class="locked-secret" href') > -1) {
-      const match = content.match(/data-secret="(.*?)"/);
-      const lockedSecret = match[1];
-      console.log('lockedSecret', lockedSecret);
-      const unlockSecret = stegcloak.reveal(lockedSecret, password);
-      console.log('unlockSecret', unlockSecret);
+    if (block?.content) {
+      const { content } = block;
 
-      // TODO , need a way to check failed.
+      if (content.indexOf('<a class="locked-secret" data-secret') > -1) {
+        const match = content.match(/data-secret="(.*?)"/);
+        const lockedSecret = match[1];
 
-      if (true) {
-        await clipboardy.write(unlockSecret);
-        logseq.App.showMsg('Your unlocked info has been placed into your system clipboard!');
+        try {
+          const unlockSecret = stegcloak.reveal(lockedSecret, password);
+          await clipboardy.write(unlockSecret);
+          logseq.App.showMsg('Unlocked info has been placed into your system clipboard!');
+          logseq.hideMainUI();
+
+        } catch (e) {
+          logseq.App.showMsg('Unlock failed, wrong password.', 'error');
+        }
+
 
       } else {
-        logseq.App.showMsg('Unlock failed, password is wrong.');
+
+        const lockedSecret = stegcloak.hide(content, password, 'locked secret');
+        logseq.Editor.updateBlock(uuid, `<a class="locked-secret" data-secret="${lockedSecret}">***</a>`);
+        logseq.App.showMsg('Lock successfully.');
+
+        logseq.hideMainUI();
       }
-
-
     } else {
-
-      const lockedSecret = stegcloak.hide(content, password, 'locked secret');
-      logseq.Editor.updateBlock(uuid, `<a class="locked-secret" data-secret="${lockedSecret}">*</a>`);
+      console.log(block);
     }
 
 
-    passwordEl.value = '';
-    logseq.hideMainUI();
   };
 
 
@@ -89,10 +98,6 @@ async function main() {
   passwordEl.removeEventListener('keypress', passwordHandler);
   passwordEl.addEventListener('keypress', passwordHandler);
 
-  document.addEventListener('keypress', function (e) {
-    console.log(e);
-  });
-
   // lock button
   const lockButtonHandler = async () => {
     await processInfo(passwordEl.value);
@@ -101,19 +106,19 @@ async function main() {
   lockButtonEl.addEventListener('click', lockButtonHandler);
 
   const commandHandler = async ({ uuid }) => {
+    passwordEl.value = '';
     passwordEl.focus();
     // @ts-ignore
-    passwordEl.select();
+    // passwordEl.select();
 
     passwordEl.setAttribute('data-uuid', uuid);
 
     const { content } = await logseq.Editor.getBlock(uuid);
-    if (content.indexOf('<a class="locked-secret" href') > -1) {
+    if (content.indexOf('<a class="locked-secret" data-secret') > -1) {
       lockButtonEl.textContent = 'Unlock';
     } else {
       lockButtonEl.textContent = 'Lock';
     }
-
 
     logseq.showMainUI();
   };
