@@ -18,6 +18,7 @@
     "@typescript-eslint/parser": "^5.3.0",
     "autoprefixer": "^10.4.0",
     "clean-webpack-plugin": "^4.0.0",
+    "clipboardy": "^3.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.5.0",
     "eslint": "^8.1.0",

@@ -10,19 +10,23 @@
 </head>
 <body>
   <div id="app">
-    <div class="w-screen h-screen flex justify-center items-center relative">
 
-
-      <div class="w-96 h-24 bg-[#4A525A] rounded-xl  shadow-2xl flex items-center justify-center">
-        <div class="">
-          <input type="password" id="password" class="p-2 h-10 rounded-lg">
-          <button class="bg-[#0a3870ee] text-gray-50 w-24 h-10 ml-6 text-xl rounded-lg font-bold">Lock</button>
+    <div class="w-screen h-screen flex justify-center items-center bg-black bg-opacity-90 backdrop-blur-sm ">
+      <div class="bg-[#4A525A] rounded-xl  shadow-2xl flex items-center justify-center relative">
+        <div class="p-5">
+          <input type="password" id="password" class="py-2 px-4 h-10 rounded-lg">
+          <button id="lock-button" class="bg-[#0a3870ee] text-gray-50 px-4 h-10 ml-3 text-xl rounded-lg font-bold">Lock</button>
         </div>
+         <div title="Close" class="absolute -right-2 -top-2 cursor-pointer text-white"><svg id="close-button" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+      </svg></div>
       </div>
-
       <div class="mx-auto w-2/3 absolute bottom-10 text-gray-500">CAUTION: Once locked, your data cannot be restored, it can only be unlocked with your password and placed into the system clipboard. Please make sure that your clipboard is safe. If you forget your password, you will lose your info forever!!!</div>
 
     </div>
+
+
+
 
   </div>
 </body>
