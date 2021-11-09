@@ -2,11 +2,22 @@ import '@logseq/libs';
 
 import StegCloak from 'stegcloak';
 import clipboardy from 'clipboardy';
+import { EmojiButton } from '@joeattardi/emoji-button';
 
 async function main() {
+  const emojiPickerEl = document.createElement('div');
+  emojiPickerEl.classList.add('absolute left-4');
+  document.getElementById('app').appendChild(emojiPickerEl);
+
   logseq.setMainUIInlineStyle({
     zIndex: 13,
     position: 'absolute',
+  });
+
+  const appUserConfig = await logseq.App.getUserConfigs();
+  const picker = new EmojiButton({
+    position: 'bottom-start',
+    theme: appUserConfig.preferredThemeMode,
   });
 
   const hotkeys = (window as any)?.hotkeys;
@@ -39,6 +50,15 @@ async function main() {
   const lockButtonEl = document.getElementById('lock-button') as HTMLInputElement;
   const closeButtonEl = document.getElementById('close-button') as HTMLInputElement;
   const passwordEl = document.getElementById('password') as HTMLInputElement;
+  const iconEl = document.getElementById('icon') as HTMLInputElement;
+
+  const iconHandler = () => {
+    picker.showPicker(emojiPickerEl);
+  };
+  iconEl.removeEventListener('click', iconHandler);
+  iconEl.addEventListener('click', iconHandler);
+
+
 
   // close button
   const closeButtonHandler = () => {

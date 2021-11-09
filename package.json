@@ -38,6 +38,7 @@
     "webpack-dev-server": "^4.4.0"
   },
   "dependencies": {
+    "@joeattardi/emoji-button": "^4.6.0",
     "@logseq/libs": "0.0.1-alpha.29",
     "stegcloak": "^1.1.1"
   }

@@ -9,11 +9,11 @@
   <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
 </head>
 <body>
-  <div id="app">
+  <div id="app" class="w-screen h-screen flex justify-center items-center bg-black bg-opacity-90 backdrop-blur-sm relative">
 
-    <div class="w-screen h-screen flex justify-center items-center bg-black bg-opacity-90 backdrop-blur-sm ">
       <div class="bg-[#4A525A] rounded-xl  shadow-2xl flex items-center justify-center relative">
         <div class="p-5">
+          <button id="icon" class="mr-3 text-white">***</button>
           <input type="password" id="password" class="py-1 px-4 h-10 rounded-lg">
           <button id="lock-button" class="bg-[#0a3870ee] text-gray-50 px-4 h-10 ml-3 rounded-lg font-bold">Lock</button>
         </div>
@@ -22,11 +22,6 @@
       </svg></div>
       </div>
       <div class="mx-auto w-2/3 absolute bottom-10 text-gray-500">CAUTION: Once locked, your data cannot be restored, it can only be unlocked with your password and placed into the system clipboard. Please make sure that your clipboard is safe. If you forget your password, you will lose your info forever!!!</div>
-
-    </div>
-
-
-
 
   </div>
 </body>
