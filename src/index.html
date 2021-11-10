@@ -8,16 +8,16 @@
   <title>Logseq lock</title>
   <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
 </head>
-<body>
-  <div id="app" class="w-screen h-screen flex justify-center items-center bg-black bg-opacity-90 backdrop-blur-sm relative">
+<body id="body">
+  <div id="app" class="w-screen h-screen flex justify-center items-center dark:bg-black bg-white bg-opacity-90 backdrop-blur-sm relative">
 
-      <div class="bg-[#4A525A] rounded-xl  shadow-2xl flex items-center justify-center relative">
+      <div class="dark:bg-[#4A525A] bg-gray-300 rounded-xl  shadow-2xl flex items-center justify-center relative">
         <div class="p-5">
-          <button id="icon" class="mr-3 text-white">***</button>
-          <input type="password" id="password" class="py-1 px-4 h-10 rounded-lg">
-          <button id="lock-button" class="bg-[#0a3870ee] text-gray-50 px-4 h-10 ml-3 rounded-lg font-bold">Lock</button>
+          <button id="icon" class="mr-3 text-white text-2xl"></button>
+          <input type="password" id="password" placeholder="Password" class="py-1 px-4 h-10 rounded-lg">
+          <button id="lock-button" class="dark:bg-[#0a3870ee] bg-blue-400 text-gray-50 px-4 h-10 ml-3 rounded-lg font-bold">Lock</button>
         </div>
-         <div title="Close" class="absolute -right-2 -top-2 cursor-pointer text-white"><svg id="close-button" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " viewBox="0 0 20 20" fill="currentColor">
+         <div title="Close" class="absolute -right-2 -top-2 cursor-pointer dark:text-white text-gray-600"><svg id="close-button" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 " viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
       </svg></div>
       </div>
