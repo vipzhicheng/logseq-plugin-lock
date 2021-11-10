@@ -7,8 +7,9 @@
     "build": "webpack --config=webpack.config.js --devtool=source-map --mode=development",
     "build:prod": "webpack --config=webpack.config.js --mode=production"
   },
-  "main": "dist/index.html",
+  "main": "index.html",
   "logseq": {
+    "icon": "./icon.png",
     "id": "_qctyb3k5r"
   },
   "devDependencies": {
