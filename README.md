@@ -6,9 +6,11 @@ A solution to use Logseq to storage accounts and passwords safely.
 
 ## Features
 
-* Lock any Logseq block.
+* Lock any Logseq block with password.
+* Use different password to lock only if you can remember it.
 * The locked info is short and invisible but still there.
 * Use different icon for different lock for fun.
+* Original data can not be restored on purpose.
 ## Encryption design
 
 I use [stegcloak](https://github.com/KuroLabs/stegcloak) to do the encryption job. `stegcloak` can convert your info to encrypted and invisible chars, so the encrypted string seems to be short.
