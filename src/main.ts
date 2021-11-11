@@ -43,7 +43,6 @@ async function main() {
   });
   logseq.App.onThemeModeChanged(({ mode }) => {
     picker.setTheme(mode);
-    console.log('mode', mode);
     if (mode === 'dark') {
       bodyEl.classList.remove('light');
       bodyEl.classList.add('dark');
