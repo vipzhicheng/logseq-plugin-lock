@@ -163,7 +163,6 @@ async function main() {
 
   const commandHandler = async ({ uuid }) => {
     passwordEl.value = '';
-    passwordEl.focus();
     passwordEl.setAttribute('data-uuid', uuid);
 
     iconEl.textContent = lockIcon;
@@ -187,6 +186,10 @@ async function main() {
     }
 
     logseq.showMainUI();
+
+    setTimeout(function() {
+      passwordEl .focus();
+    }, 100);
   };
 
   logseq.Editor.registerSlashCommand('Lock', commandHandler );
