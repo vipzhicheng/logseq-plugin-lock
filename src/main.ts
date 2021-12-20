@@ -62,13 +62,16 @@ async function main() {
   const hotkeys = (window as any)?.hotkeys;
   const bindKeys = async function() {
     if (hotkeys) {
-      hotkeys('esc,q', async function (event, handler) {
+      hotkeys('esc,q,command+shift+l', async function (event, handler) {
         switch (handler.key) {
           case 'esc': // ESC
           case 'q': // q
+          case 'command+shift+l': // cmd+shift+l
             await logseq.Editor.restoreEditingCursor();
             await logseq.Editor.exitEditingMode(true);
-            logseq.hideMainUI();
+            logseq.hideMainUI({
+              restoreEditingCursor: true
+            });
           break;
         }
       });
@@ -163,11 +166,19 @@ async function main() {
 
   const commandHandler = async ({ uuid }) => {
     passwordEl.value = '';
-    passwordEl.setAttribute('data-uuid', uuid);
 
     iconEl.textContent = lockIcon;
+    let content;
+    if (!uuid) {
+      const block = await logseq.Editor.getCurrentBlock();
+      content = block.content;
+    } else {
 
-    const { content } = await logseq.Editor.getBlock(uuid);
+      const block = await logseq.Editor.getBlock(uuid);
+      passwordEl.setAttribute('data-uuid', uuid);
+      content = block.content;
+    }
+
     if (content.indexOf('<a class="locked-secret" data-secret') > -1) {
       lockButtonEl.textContent = 'Unlock';
       iconEl.style.display = 'none';
@@ -185,7 +196,9 @@ async function main() {
       bodyEl.classList.add('light');
     }
 
-    logseq.showMainUI();
+    logseq.showMainUI({
+      autoFocus: true,
+    });
 
     setTimeout(function() {
       passwordEl .focus();
@@ -194,6 +207,15 @@ async function main() {
 
   logseq.Editor.registerSlashCommand('Lock', commandHandler );
   logseq.Editor.registerBlockContextMenuItem(`Lock`, commandHandler);
+
+  logseq.App.registerCommandPalette({
+    key: `lock-block`,
+    label: `Lock block with a password`,
+    keybinding: {
+      mode: 'global',
+      binding: 'mod+shift+l'
+    }
+  }, commandHandler);
 }
 
 logseq.ready(main).catch(console.error);

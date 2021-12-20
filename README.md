@@ -11,6 +11,12 @@ A solution to use Logseq to storage accounts and passwords safely.
 * The locked info is short and invisible but still there.
 * Use different icon for different lock for fun.
 * Original data can not be restored on purpose.
+
+## Triggers
+
+1. Via slash command: `/lock`
+2. Via context menu: `Lock`
+3. Via shortcut: `cmd+shift+l`
 ## Encryption design
 
 I use [stegcloak](https://github.com/KuroLabs/stegcloak) to do the encryption job. `stegcloak` can convert your info to encrypted and invisible chars, so the encrypted string seems to be short.
