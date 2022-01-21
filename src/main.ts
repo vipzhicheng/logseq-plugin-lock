@@ -132,6 +132,7 @@ async function main() {
           logseq.App.showMsg('Unlocked info has been placed into your system clipboard!');
           logseq.hideMainUI();
         } catch (e) {
+          console.log(e);
           passwordEl.select();
           logseq.App.showMsg('Unlock failed, wrong password!', 'error');
         }

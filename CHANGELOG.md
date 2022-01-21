@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.3
+Just for debuging, a weird bug only can be debuged on marketplace version.
+
 ## v0.0.2
 
 * Fix: Lock or unlock input element auto focused.
