@@ -11,6 +11,8 @@ async function main() {
   const closeButtonEl = document.getElementById('close-button') as HTMLInputElement;
   const passwordEl = document.getElementById('password') as HTMLInputElement;
   const iconEl = document.getElementById('icon') as HTMLInputElement;
+  const unlockedRegionEl = document.getElementById('unlock-region') as HTMLInputElement;
+  const copySecretEl = document.getElementById('copy-secret') as HTMLInputElement;
 
   // settings
   const settingsVersion = 'v1';
@@ -104,6 +106,23 @@ async function main() {
   closeButtonEl.removeEventListener('click', closeButtonHandler);
   closeButtonEl.addEventListener('click', closeButtonHandler);
 
+  const unlockSecretCache = {
+    secret: ''
+  };
+  const copySecretHandler = async () => {
+    await clipboardy.write(unlockSecretCache.secret);
+    await logseq.Editor.restoreEditingCursor();
+    await logseq.Editor.exitEditingMode(true);
+    logseq.App.showMsg('Unlocked info has been placed into your system clipboard!');
+    unlockedRegionEl.classList.add('hidden');
+    unlockSecretCache.secret = '';
+    logseq.hideMainUI();
+
+  };
+
+  copySecretEl.removeEventListener('click', copySecretHandler);
+  copySecretEl.addEventListener('click', copySecretHandler);
+
   // password
   const stegcloak = new StegCloak(true, true);
 
@@ -126,13 +145,12 @@ async function main() {
 
         try {
           const unlockSecret = stegcloak.reveal(lockedSecret, password);
-          await clipboardy.write(unlockSecret);
-          await logseq.Editor.restoreEditingCursor();
-          await logseq.Editor.exitEditingMode(true);
-          logseq.App.showMsg('Unlocked info has been placed into your system clipboard!');
-          logseq.hideMainUI();
+          unlockSecretCache.secret = unlockSecret;
+
+          unlockedRegionEl.classList.remove('hidden');
+
+          logseq.App.showMsg('Secret unlocked, please click the copy button to copy it into your system clipboard!');
         } catch (e) {
-          console.log(e);
           passwordEl.select();
           logseq.App.showMsg('Unlock failed, wrong password!', 'error');
         }

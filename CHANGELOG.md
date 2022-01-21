@@ -1,6 +1,10 @@
 # Changelog
 
 ## v0.0.3
+
+* Feat: change the way of showing password.
+
+## v0.0.3
 Just for debuging, a weird bug only can be debuged on marketplace version.
 
 ## v0.0.2
