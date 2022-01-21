@@ -4,4 +4,5 @@
 
 * Fix: Lock or unlock input element auto focused.
 * Fix: Non-edit mode can not trigger lock panel.
-* Feat: Add `cmd+shift+l` shortcut
+* Fix: Try to fix decryption faild.
+* Feat: Add `cmd+shift+l` shortcut.
