@@ -1,6 +1,6 @@
 {
   "name": "logseq-plugin-lock",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --config=webpack.config.js --devtool=source-map --mode=development --port=3001",
