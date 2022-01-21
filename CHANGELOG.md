@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.0.5
+
+* Fix: a browser clipboard compatibility issue.
 ## v0.0.4
 
 * Feat: use another interaction ui to unlock.

@@ -1,8 +1,25 @@
 import '@logseq/libs';
 
 import StegCloak from 'stegcloak';
-import clipboardy from 'clipboardy';
+// import clipboardy from 'clipboardy';
 import { EmojiButton } from '@joeattardi/emoji-button';
+
+const copyToClipboard = str => {
+	const el = document.createElement('textarea');
+	el.value = str;
+	el.setAttribute('readonly', '');
+	el.style.position = 'absolute';
+	el.style.left = '-9999px';
+	document.body.appendChild(el);
+	const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
+	if (selected) {
+	  document.getSelection().removeAllRanges();
+	  document.getSelection().addRange(selected);
+	}
+};
 
 async function main() {
 
@@ -110,7 +127,7 @@ async function main() {
     secret: ''
   };
   const copySecretHandler = async () => {
-    await clipboardy.write(unlockSecretCache.secret);
+    copyToClipboard(unlockSecretCache.secret);
     await logseq.Editor.restoreEditingCursor();
     await logseq.Editor.exitEditingMode(true);
     logseq.App.showMsg('Unlocked info has been placed into your system clipboard!');
