@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.0.6
+
+* infra: upgrade deps
+* infra: move from webpack to vite
+* feat: add an icon to page bar
+* fix: bugs
+
 ## v0.0.5
 
 * Fix: a browser clipboard compatibility issue.
