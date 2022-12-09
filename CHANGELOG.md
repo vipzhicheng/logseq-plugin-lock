@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.0.7
+
+* feat: add two action for unlock
+
 ## v0.0.6
 
 * infra: upgrade deps

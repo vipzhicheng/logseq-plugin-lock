@@ -37,6 +37,12 @@ const unlockedRegionEl = document.getElementById(
   "unlock-region"
 ) as HTMLInputElement;
 const copySecretEl = document.getElementById("copy-secret") as HTMLInputElement;
+const replaceSecretEl = document.getElementById(
+  "replace-secret"
+) as HTMLInputElement;
+const insertSecretEl = document.getElementById(
+  "insert-secret"
+) as HTMLInputElement;
 
 // settings
 const settingsVersion = "v1";
@@ -154,6 +160,31 @@ async function main() {
   copySecretEl.removeEventListener("click", copySecretHandler);
   copySecretEl.addEventListener("click", copySecretHandler);
 
+  const replaceSecretHandler = async () => {
+    const uuid = passwordEl.getAttribute("data-uuid");
+    logseq.Editor.updateBlock(uuid, unlockSecretCache.secret);
+    unlockedRegionEl.classList.add("hidden");
+    unlockSecretCache.secret = "";
+    logseq.hideMainUI();
+  };
+
+  replaceSecretEl.removeEventListener("click", replaceSecretHandler);
+  replaceSecretEl.addEventListener("click", replaceSecretHandler);
+
+  const insertSecretHandler = async () => {
+    const uuid = passwordEl.getAttribute("data-uuid");
+    logseq.Editor.insertBlock(uuid, unlockSecretCache.secret, {
+      sibling: false,
+      before: false,
+    });
+    unlockedRegionEl.classList.add("hidden");
+    unlockSecretCache.secret = "";
+    logseq.hideMainUI();
+  };
+
+  insertSecretEl.removeEventListener("click", insertSecretHandler);
+  insertSecretEl.addEventListener("click", insertSecretHandler);
+
   const processInfo = async (password) => {
     if (!password) {
       logseq.UI.showMsg("Password can not be empty!", "error");
@@ -180,7 +211,9 @@ async function main() {
             "Secret unlocked, please click the copy button to copy it into your system clipboard!"
           );
 
-          copySecretEl.style.display = "block";
+          // copySecretEl.style.display = "block";
+          // replaceSecretEl.style.display = "block";
+          // insertSecretEl.style.display = "block";
         } catch (e) {
           passwordEl.select();
           logseq.UI.showMsg("Unlock failed, wrong password!", "error");
@@ -219,7 +252,9 @@ async function main() {
 
   const commandHandler = async ({ uuid }) => {
     passwordEl.value = "";
-    copySecretEl.style.display = "none";
+    // copySecretEl.style.display = "none";
+    // replaceSecretEl.style.display = "none";
+    // insertSecretEl.style.display = "none";
 
     iconEl.textContent = lockIcon;
     let content;
