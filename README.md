@@ -34,3 +34,13 @@ If this plugin solve your situation a little bit and you will, you can choose to
 ## Licence
 
 MIT
+
+## Installation
+
+1. Make sure you have the latest version of 'node' and 'npm' on your system. You can use [nvm](https://github.com/nvm-sh/nvm) to install and manage your node-js versions.
+2. Clone repository with git `git clone https://github.com/vipzhicheng/logseq-plugin-lock.git`
+3. Navigate into the `logseq-plugin-lock` folder.
+4. Execute `npm install`
+5. Execute `npm run build`
+6. Open logseq and activate the "Developer Mode" in Settings -> Advanced
+7. Under "Plugins" click on "Load unpacked plugin" and choose `logseq-plugin-lock/dist` directory. That's it!
