@@ -27,9 +27,6 @@ You can not decrypt your original Logseq block info back, but only  unlock the i
 
 **Once locked, your data cannot be restored, it can only be unlocked with your password and placed into the system clipboard. Please make sure that your clipboard is safe. If you forget your password, you will lose your info forever!!!**
 
-## ❤️ Buy me a coffee
-
-If this plugin solve your situation a little bit and you will, you can choose to buy me a coffee via [this](https://www.buymeacoffee.com/vipzhicheng) and [this](https://afdian.net/@vipzhicheng), that means a lot to me.
 
 ## Licence
 
@@ -44,3 +41,7 @@ MIT
 5. Execute `npm run build`
 6. Open logseq and activate the "Developer Mode" in Settings -> Advanced
 7. Under "Plugins" click on "Load unpacked plugin" and choose `logseq-plugin-lock/dist` directory. That's it!
+
+## ❤️ Buy me a coffee
+
+If this plugin solve your situation a little bit and you will, you can choose to buy me a coffee via [this](https://www.buymeacoffee.com/vipzhicheng) and [this](https://afdian.net/@vipzhicheng), that means a lot to me.
